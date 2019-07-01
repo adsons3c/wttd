@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def subscribe(request):
-    return HttpResponse()
+    return render(request, 'subscriptions/subscriptions_form.html')
