@@ -67,7 +67,27 @@ class  SubscribePostTest(TestCase):
 
     def test_subscription_mail_body(self):
         email = mail.outbox[0]
-        self.assertEqual('Adson', email.body)
-        self.assertEqual('1234567891', email.body)
-        self.assertEqual('adsonemanuels3c@gmail.com', email.body)
-        self.assertEqual('83-9999-9999', email.body)
+        self.assertIn('Adson', email.body)
+        self.assertIn('1234567891', email.body)
+        self.assertIn('adsonemanuels3c@gmail.com', email.body)
+        self.assertIn('83-9999-9999', email.body)
+
+class SubscribeInvalidPost(TestCase):
+
+    def setUp(self):
+        self.response = self.client.post('/inscricao/', {})
+
+    def test_post(self):
+        '''Invalid Post should not redirect'''
+        self.assertEqual(200, self.response.status_code)
+
+    def test_template(self):
+        self.assertTemplateUsed(self.response, 'subscriptions/subscription_form.html')
+
+    def test_has_form(self):
+        form = self.response.context['form']
+        self.assertIsInstance(form, SubscriptionsForm)
+
+    def test_form_has_errors(self):
+        form = self.response.context['form']
+        self.assertTrue(form.errors)

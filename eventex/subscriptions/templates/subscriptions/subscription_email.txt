@@ -1,10 +1,10 @@
 Olá Tudo bem?
 Muito obrigado por se inscrever no Eventex.
 
-Seus tados foram os seguintes:
-Nome = {{Nome}}
-CPF = {{cpf}}
-Email = {{email}}
-Telefone: {{phone}}
+Seus dados foram os seguintes:
+Nome = {{ name }}
+CPF = {{ cpf }}
+Email = {{ email }}
+Telefone: {{ phone }}
 
 Em até 48 horas entraremos em contato!
